@@ -26,8 +26,9 @@ $(function () {
 				if (endpoints.length < 5) {
 					if ($('#endpoint').val() !== '') {
 						endpoints.push($('#endpoint').val());
+						$('.endpoints-list').append('<a href="'+ $('#endpoint').val() +'" target="_blank">'+$('#endpoint').val()+'</a><span class="glyphicon remove-ep glyphicon-minus"></span>')
+
 						$('#endpoint').val('');
-						console.log(endpoints);
 						console.info('Endpoint added sucessfuly!');
 					}
 					else {
