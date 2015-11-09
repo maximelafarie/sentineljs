@@ -22,14 +22,14 @@ $(function () {
 			//};
 			var endpoints = [];
 
-			$('#addEP').on('click', function() {
+			function addEP () {
 				if (endpoints.length < 5) {
 					if ($('#endpoint').val() !== '') {
 						endpoints.push($('#endpoint').val());
-						$('.endpoints-list').append('<a href="'+ $('#endpoint').val() +'" target="_blank">'+$('#endpoint').val()+'</a><span class="glyphicon remove-ep glyphicon-minus"></span>')
+						$('.endpoints-list').append('<p><a href="'+ $('#endpoint').val() +'" target="_blank">'+$('#endpoint').val()+'</a><span class="remove-ep glyphicon glyphicon-minus"></span></p>')
 
-						$('#endpoint').val('');
-						console.info('Endpoint added sucessfuly!');
+						$('#endpoint').val('').focus();
+						console.info('Endpoint added sucessfuly!', endpoints);
 					}
 					else {
 						console.warn('You didn\'t enter any endpoint to watch!')
@@ -39,6 +39,32 @@ $(function () {
 					console.warn('You reach the limit of watchable endpoints!');
 					$('#endpoint').val('');
 				}
+			};
+
+			function removeEP (endpoint) {
+				_.remove(endpoints, function (ep) {
+					return ep === endpoint;
+					console.info('Endpoint removed sucessfuly!', endpoints);
+				})
+			};
+
+			$('#addEP').on('click', function() {
+				addEP();
+			});
+
+			$('#endpoint').bind("enterKey",function(e){
+				addEP();
+			});
+			$('#endpoint').keyup(function(e){
+				if(e.keyCode == 13)
+				{
+					$(this).trigger("enterKey");
+				}
+			});
+
+			$('.remove-ep').on('click', function() {
+				removeEP($(this).next('a').val());
+				$(this).parent('p').remove();
 			});
 
 
