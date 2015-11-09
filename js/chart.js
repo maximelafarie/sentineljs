@@ -26,7 +26,7 @@ $(function () {
 				if (endpoints.length < 5) {
 					if ($('#endpoint').val() !== '') {
 						endpoints.push($('#endpoint').val());
-						$('.endpoints-list').append('<p><a href="'+ $('#endpoint').val() +'" target="_blank">'+$('#endpoint').val()+'</a><span class="remove-ep glyphicon glyphicon-minus"></span></p>')
+						$('.endpoints-list').append('<span>'+$('#endpoint').val()+'</span>')
 
 						$('#endpoint').val('').focus();
 						console.info('Endpoint added sucessfuly!', endpoints);
@@ -62,9 +62,10 @@ $(function () {
 				}
 			});
 
-			$('.remove-ep').on('click', function() {
-				removeEP($(this).next('a').val());
-				$(this).parent('p').remove();
+			$('.endpoints-list > span').on('click', function(event) {
+				console.log('click');
+				removeEP($(this).val());
+				$(this).remove();
 			});
 
 

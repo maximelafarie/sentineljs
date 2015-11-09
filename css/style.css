@@ -9,11 +9,13 @@ svg > text {
     display: none;
 }
 
-.remove-ep {
-    margin-left: 15px;
+.endpoints-list span {
+    margin: 10px;
+    display: block;
 }
 
-.remove-ep:hover {
+.endpoints-list span:hover {
+    text-decoration: line-through;
     cursor: pointer;
 }
 
