@@ -20,6 +20,25 @@ $(function () {
 
 				//return (request_time / 1000);
 			//};
+			var endpoints = [];
+
+			$('#addEP').on('click', function() {
+				if (endpoints.length < 5) {
+					if ($('#endpoint').val() !== '') {
+						endpoints.push($('#endpoint').val());
+						$('#endpoint').val('');
+						console.log(endpoints);
+						console.info('Endpoint added sucessfuly!');
+					}
+					else {
+						console.warn('You didn\'t enter any endpoint to watch!')
+					}
+				}
+				else {
+					console.warn('You reach the limit of watchable endpoints!');
+					$('#endpoint').val('');
+				}
+			});
 
 
 			$(document).ready(function () {
