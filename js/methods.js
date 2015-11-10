@@ -1,5 +1,6 @@
-
 'use strict';
+
+var endpoints = [];
 
 function removeEP (endpoint) {
     _.remove(endpoints, function (ep) {
@@ -12,6 +13,7 @@ function addEP () {
     if (endpoints.length < 5) {
         if ($('#endpoint').val() !== '') {
             endpoints.push($('#endpoint').val());
+            $(document).trigger('endpoint_added');
             $('.endpoints-list').append("<p><a target='_blank' href='"+$('#endpoint').val()+"'>"+$('#endpoint').val()+"</a><button type='button' class='btn btn-default btn-xs' onclick='removeEP(\""+$('#endpoint').val()+"\"); $(this).parent().remove();'>Remove endpoint</button></p>");
 
             $('#endpoint').val('').focus();
@@ -59,4 +61,9 @@ function watchEP (epList, endpoint, series, startTime) {
         },
         error: function() { console.error('Failed!'); }
     });
+}
+
+function hostname(url) {
+    var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+    if ( match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0 ) return match[2];
 }
