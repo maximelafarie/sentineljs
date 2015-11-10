@@ -1,10 +1,16 @@
 'use strict';
 
 var endpoints = [];
+var chart = null;
 
 function removeEP (endpoint) {
+    // RECUPERER L'INDEX DU ENDPOINT DANS LE TABLEAU endpoints PUIS ENLEVER LE MEME INDEX DANS chart.series
     _.remove(endpoints, function (ep) {
         return ep == endpoint;
+    });
+    console.log(chart);
+    _.remove(chart.series, function (serie) {
+        return serie.name == endpoint;
     });
     console.info('Endpoint removed sucessfuly!', endpoints);
 }

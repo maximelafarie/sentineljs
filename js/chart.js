@@ -4,8 +4,8 @@
     endpoints.push('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys');
     endpoints.push('http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&appid=2de143494c0b295cca9337e1e96b00e0');
 
-    //Another ep to test
-    //https://api.instagram.com/v1/tags/malmoefestival/media/recent?client_id=c1302f417cda4e09968eaec958fe0ae2
+    // Another ep to test
+    // https://api.instagram.com/v1/tags/malmoefestival/media/recent?client_id=c1302f417cda4e09968eaec958fe0ae2
 
 	$(document).ready(function () {
 		Highcharts.setOptions({
@@ -14,7 +14,7 @@
 			}
 		});
 
-		var chart = new Highcharts.Chart({
+		chart = new Highcharts.Chart({
 			chart: {
 				renderTo: 'container',
 				type: 'spline',
@@ -74,6 +74,7 @@
 				_.each(endpoints, function (ep, key) {
 					ch.addSeries({
 						name: hostname(ep),
+						fullName: ep,
 						data: (function () {
 							var data = [],
 							time = (new Date()).getTime(),
@@ -94,6 +95,7 @@
 				$(document).on('endpoint_added', function() {
 					ch.addSeries({
 						name: hostname(endpoints[endpoints.length-1]),
+						fullName: endpoints[endpoints.length-1],
 						data: (function () {
 							var data = [],
 							time = (new Date()).getTime(),
