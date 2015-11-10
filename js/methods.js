@@ -1,17 +1,18 @@
-var endpoints = [];
+
+'use strict';
 
 function removeEP (endpoint) {
     _.remove(endpoints, function (ep) {
         return ep == endpoint;
     });
     console.info('Endpoint removed sucessfuly!', endpoints);
-};
+}
 
 function addEP () {
     if (endpoints.length < 5) {
         if ($('#endpoint').val() !== '') {
             endpoints.push($('#endpoint').val());
-            $('.endpoints-list').append("<p><span>"+$('#endpoint').val()+"</span><button type='button' onclick='removeEP(\""+$('#endpoint').val()+"\")' class='btn btn-default'><span class='glyphicon glyphicon-minus'></span></button></p>");
+            $('.endpoints-list').append("<p><a target='_blank' href='"+$('#endpoint').val()+"'>"+$('#endpoint').val()+"</a><button type='button' class='btn btn-default btn-xs' onclick='removeEP(\""+$('#endpoint').val()+"\"); $(this).parent().remove();'>Remove endpoint</button></p>");
 
             $('#endpoint').val('').focus();
             console.info('Endpoint added sucessfuly!', endpoints);
@@ -33,9 +34,29 @@ $('#addEP').on('click', function() {
 $('#endpoint').bind("enterKey",function(e){
     addEP();
 });
+
 $('#endpoint').keyup(function(e){
     if(e.keyCode == 13)
     {
         $(this).trigger("enterKey");
     }
 });
+
+function watchEP (epList, endpoint, series, startTime) {
+    var epIndex = _.findKey(epList, function (ep) { return ep == endpoint });
+    $.ajax({
+        url: endpoint,
+        data: {},
+        type: 'GET',
+        crossDomain: true,
+        dataType: 'jsonp',
+        success: function() {
+            var request_time = new Date().getTime() - startTime;
+            var x = (new Date()).getTime(),
+            y = request_time/1000;
+            series[epIndex].addPoint([x, y], false, true);
+            console.log("Success", request_time/1000);
+        },
+        error: function() { console.error('Failed!'); }
+    });
+}

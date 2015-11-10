@@ -8,15 +8,12 @@
 svg > text {
     display: none;
 }
-
-.endpoints-list span {
-    margin: 10px;
-    display: block;
+.endpoints-list{
+    margin-top: 10px;
 }
 
-.endpoints-list span:hover {
-    text-decoration: line-through;
-    cursor: pointer;
+.endpoints-list a {
+    margin: 10px;
 }
 
 .footer {
