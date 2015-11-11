@@ -15,7 +15,8 @@
 		Highcharts.setOptions({
 			global: {
 				useUTC: false
-			}
+			},
+			showInLegend: true
 		});
 
 		chart = new Highcharts.Chart({
@@ -67,7 +68,7 @@
 				}
 			},
 			legend: {
-				enabled: false
+				enabled: true
 			},
 			exporting: {
 				enabled: false
