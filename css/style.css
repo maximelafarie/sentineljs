@@ -12,8 +12,45 @@ svg > text {
     margin-top: 10px;
 }
 
+.draggable {
+    display: none;
+    width: 50%;
+    max-height: 500px;
+    background-color: #cecece;
+    overflow: auto;
+    padding: 7px;
+    font-size: .8em;
+    z-index: 2000;
+    position: absolute;
+}
+
+.draggable .title {
+    font-size: 1.2em;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
+
+.response {
+    padding: 5px;
+    margin: 5px;
+    background-color: #fafafa;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+}
+
 .endpoints-list a {
     margin: 10px;
+}
+
+.endpoints-list button {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .footer {
