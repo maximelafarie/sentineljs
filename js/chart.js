@@ -3,21 +3,21 @@
 
 	// Make all divs with this class draggable
 
-    endpoints.push('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys');
-    endpoints.push('http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&appid=2de143494c0b295cca9337e1e96b00e0');
-    endpoints.push('https://api.instagram.com/v1/tags/malmoefestival/media/recent?client_id=c1302f417cda4e09968eaec958fe0ae2');
-    endpoints.push('https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&page=pizza&format=json');
+  endpoints.push('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22nome%2C%20ak%22)&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys');
+  endpoints.push('http://api.openweathermap.org/data/2.5/group?id=524901,703448,2643743&units=metric&appid=2de143494c0b295cca9337e1e96b00e0');
+  endpoints.push('https://api.instagram.com/v1/tags/malmoefestival/media/recent?client_id=c1302f417cda4e09968eaec958fe0ae2');
+  endpoints.push('https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&page=pizza&format=json');
 
-    if (endpoints.length > 0) {
-    	var index = 0;
-    	_.each(endpoints, function (ep) {
-    		$('.endpoints-list').append("<p><a target='_blank' href='"+ep+"'>"+hostname(ep)+"</a><button type='button' class='btn btn-default btn-xs' onclick='removeEP(\""+ep+"\"); $(this).parent().remove();'>Remove endpoint</button><button type='button' class='btn btn-primary btn-xs oop' onclick='showEPOutput(\"output"+index+"\");'>Show endpoint output</button></p>");
+  if (endpoints.length > 0) {
+  	var index = 0;
+  	_.each(endpoints, function (ep) {
+  		$('.endpoints-list').append("<p><a target='_blank' href='"+ep+"'>"+hostname(ep)+"</a><button type='button' class='btn btn-default btn-xs' onclick='removeEP(\""+ep+"\"); $(this).parent().remove();'>Remove endpoint</button><button type='button' class='btn btn-primary btn-xs oop' onclick='showEPOutput(\"output"+index+"\");'>Show endpoint output</button></p>");
 
-    		$('.output-group').append("<div id='output"+(index)+"' class='ui-widget-content draggable'><span class='close'>X</span><span class='title'>"+hostname(ep)+"</span></div>");
+  		$('.output-group').append("<div id='output"+(index)+"' class='ui-widget-content draggable'><span class='close'>X</span><span class='title'>"+hostname(ep)+"</span></div>");
 
-    		index++;
-    	});
-    }
+  		index++;
+  	});
+  }
 
 	$(document).ready(function () {
 

@@ -80,12 +80,16 @@ function watchEP (epList, endpoint, series, startTime) {
         type: 'GET',
         crossDomain: true,
         dataType: 'jsonp',
-        success: function(data) {
+        success: function(data, status, xhr) {
             var request_time = new Date().getTime() - startTime;
             // var x = (new Date()).getTime(),
             var x = startTime,
             y = request_time/1000;
             series[epIndex].addPoint([x, y], false, true);
+            var server_time = xhr.getResponseHeader('Date');
+            if (server_time !== null) {
+                console.log(server_time);
+            }
             $('#output'+epIndex).append('<div class="response"><pre><code class="language-js">'+JSON.stringify(data)+'</code></pre></div>');
             //console.log("Success", request_time/1000);
         },
